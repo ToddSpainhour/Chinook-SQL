@@ -61,3 +61,27 @@ ON Invoice.CustomerId = Customer.CustomerId
 JOIN Employee
 ON Customer.SupportRepId = Employee.EmployeeId
 ORDER BY Employee.EmployeeId
+
+
+
+
+-- 7. Provide a query that shows the Invoice Total, Customer name, Country and Sale Agent name for all invoices and customers.
+
+
+
+
+-- 8. How many Invoices were there in 2009 and 2011?
+
+SELECT COUNT(*)
+FROM Invoice
+WHERE Invoice.InvoiceDate BETWEEN '2009' AND '2011/12/31'
+
+
+
+
+-- 9. What are the respective total sales for each of those years?  
+
+-- WIP --
+SELECT *
+FROM Invoice
+WHERE Invoice.InvoiceDate BETWEEN '1/1/2009' AND '12/31/2011'
