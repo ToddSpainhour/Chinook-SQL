@@ -81,7 +81,50 @@ WHERE Invoice.InvoiceDate BETWEEN '2009' AND '2011/12/31'
 
 -- 9. What are the respective total sales for each of those years?  
 
--- WIP --
-SELECT *
+SELECT DISTINCT YEAR(InvoiceDate) AS [Year], SUM(Total) AS [Annual Total]
 FROM Invoice
-WHERE Invoice.InvoiceDate BETWEEN '1/1/2009' AND '12/31/2011'
+WHERE InvoiceDate BETWEEN '1/1/2009' AND '12/31/2011'
+GROUP BY YEAR(InvoiceDate)
+
+
+
+
+-- 10. Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for Invoice ID 37.
+
+SELECT COUNT(*)
+FROM InvoiceLine
+WHERE InvoiceLine.InvoiceId = '37'
+
+
+
+
+-- 11. Looking at the InvoiceLine table, provide a query that COUNTs the number of line items for each Invoice. HINT: GROUP BY
+
+SELECT InvoiceId AS [Invoice ID],  COUNT(*) AS [Number of Line Items]
+FROM InvoiceLine
+GROUP BY InvoiceId
+
+
+
+
+-- 12. Provide a query that includes the purchased track name with each invoice line item.
+
+SELECT Track.Name, InvoiceLine.*
+FROM InvoiceLine
+JOIN Track
+ON Track.TrackId = InvoiceLine.TrackId
+
+
+
+
+-- 13. Provide a query that includes the purchased track name AND artist name with each invoice line item.
+
+SELECT InvoiceLine.*,  Track.Name AS [Track Name], Artist.Name AS [Artist Name]
+FROM InvoiceLine
+JOIN Track
+ON Track.TrackId = InvoiceLine.TrackId
+JOIN Album
+ON Album.AlbumId = Track.TrackId
+JOIN Artist
+ON Artist.ArtistId = Album.ArtistId
+ 
