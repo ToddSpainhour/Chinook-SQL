@@ -128,3 +128,23 @@ ON Album.AlbumId = Track.TrackId
 JOIN Artist
 ON Artist.ArtistId = Album.ArtistId
  
+
+
+
+ -- 14. Provide a query that shows the # of invoices per country. HINT: GROUP BY
+
+ SELECT BillingCountry AS [Billing Country], COUNT(*) AS [Number of Invoices]
+ FROM Invoice
+ GROUP BY BillingCountry
+
+
+
+
+ -- 15. Provide a query that shows the total number of tracks in each playlist. The Playlist name should be include on the resultant table.
+
+
+ SELECT Playlist.Name AS [Playlist Name],COUNT(PlaylistTrack.PlaylistId) AS [Total Number of Tracks]
+ FROM Playlist
+ JOIN PlaylistTrack
+ ON Playlist.PlaylistId = PlaylistTrack.PlaylistId
+ GROUP BY Playlist.Name
