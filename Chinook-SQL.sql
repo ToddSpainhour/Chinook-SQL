@@ -147,3 +147,48 @@ ON Artist.ArtistId = Album.ArtistId
  JOIN PlaylistTrack
  ON Playlist.PlaylistId = PlaylistTrack.PlaylistId
  GROUP BY Playlist.Name
+
+
+
+
+ -- 16. Provide a query that shows all the Tracks, but displays no IDs. The result should include the Album name, Media type and Genre.
+
+ SELECT Track.Name AS [Track Name],
+		Album.Title AS [Album Name],
+		MediaType.Name AS [Media Type],
+		Genre.Name AS [Genre]
+ FROM Track
+ JOIN Album
+ ON Track.AlbumId = Album.AlbumId
+ JOIN MediaType
+ ON MediaType.MediaTypeId = Track.MediaTypeId
+ JOIN Genre
+ ON Genre.GenreId = Track.GenreId
+
+
+
+
+ -- 17. Provide a query that shows all Invoices but includes the # of invoice line items.
+
+SELECT Invoice.InvoiceId, COUNT(InvoiceLineId) AS [Line Item Total]
+FROM Invoice
+JOIN InvoiceLine
+ON Invoice.InvoiceId = InvoiceLine.InvoiceId
+GROUP BY Invoice.InvoiceId
+
+
+
+
+ --18. Provide a query that shows total sales made by each sales agent.
+
+ SELECT Employee.EmployeeId, Title, Employee.FirstName, Employee.LastName, SUM(Total) AS [Sales Total]
+ FROM Employee
+ JOIN Customer
+ ON Customer.SupportRepId = Employee.EmployeeId
+ JOIN Invoice
+ ON Invoice.InvoiceId = Customer.CustomerId
+ WHERE Employee.Title = 'Sales Support Agent'
+ GROUP BY Employee.EmployeeId, Employee.FirstName, Employee.LastName, Title
+
+
+
